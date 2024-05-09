@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class AnaliseAltura {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Variáveis para armazenar a maior e menor altura, média de altura dos homens e contagem de mulheres
+        double maiorAltura = Double.MIN_VALUE;
+        double menorAltura = Double.MAX_VALUE;
+        double somaAlturaHomens = 0;
+        int contadorMulheres = 0;
+        int contadorHomens = 0;
+
+        // Loop para coletar os dados de altura e sexo das 10 pessoas
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Pessoa " + (i + 1) + ":");
+            System.out.print("Altura (em metros): ");
+            double altura = scanner.nextDouble();
+            System.out.print("Sexo (M/F): ");
+            char sexo = scanner.next().charAt(0);
+
+            // Verificar e atualizar a maior e menor altura
+            if (altura > maiorAltura) {
+                maiorAltura = altura;
+            }
+            if (altura < menorAltura) {
+                menorAltura = altura;
+            }
+
+            // Verificar se a pessoa é homem para calcular a média de altura dos homens
+            if (sexo == 'M' || sexo == 'm') {
+                somaAlturaHomens += altura;
+                contadorHomens++;
+            } else if (sexo == 'F' || sexo == 'f') { // Incrementar o contador de mulheres
+                contadorMulheres++;
+            } else {
+                System.out.println("Sexo inválido. Por favor, insira M ou F.");
+            }
+        }
+
+        // Calcular a média de altura dos homens
+        double mediaAlturaHomens = somaAlturaHomens / contadorHomens;
+
+        // Exibir os resultados
+        System.out.println("Maior altura: " + maiorAltura + " metros");
+        System.out.println("Menor altura: " + menorAltura + " metros");
+        System.out.println("Média de altura dos homens: " + mediaAlturaHomens + " metros");
+        System.out.println("Número de mulheres: " + contadorMulheres);
+
+        scanner.close();
+    }
+}
